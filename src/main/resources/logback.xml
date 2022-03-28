@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="2 minutes">
+	
+	<property name="APP_NAME" value="ALGOSTACKS"/>
+	<property name="LOG_SERVICE_NAME" value="user-management"/>
+	<property name="LOG_FORMAT" value="%date [app=${APP_NAME}] [thread=%thread] [level=%level] [sourcecode=%file:%line] %X message=%msg%n"/>
+	<property name="LOG_FILE_LOCATION" value="./logs"/>
+	
+	<jmxConfigurator/>
+	
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<Pattern>
+				%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n
+			</Pattern>
+		</layout>
+	</appender>
+	
+	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_FILE_LOCATION}/${APP_NAME}_${LOG_SERVICE_NAME}.log</file>
+        <encoder
+            class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>${LOG_FORMAT}</Pattern>
+        </encoder>
+
+        <rollingPolicy
+            class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <fileNamePattern>${LOG_FILE_LOCATION}/archived/${APP_NAME}_${LOG_SERVICE_NAME}.%d{yyyy-MM-dd}.log.gz</fileNamePattern>
+            <maxHistory>5</maxHistory>
+        </rollingPolicy>
+    </appender>
+	
+	<!-- Trace < Debug < Info < Warn < Error   -->
+    <logger name="com.as.usermanagement" level="DEBUG" additivity="false">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="FILE" />
+    </logger>
+    
+    <!-- LOG everything at ERROR level (may be libraries logs) and others -->
+    <root level="ERROR">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="FILE" />
+    </root>
+    
+</configuration>
