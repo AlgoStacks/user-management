@@ -1,5 +1,10 @@
 package com.as.usermanagement.model;
 
+import com.as.usermanagement.model.enums.Gender;
+import com.as.usermanagement.model.enums.PrefferedLanguage;
+import com.as.usermanagement.model.enums.UserTitle;
+import com.as.usermanagement.model.enums.UserType;
+
 public class User {
 
     private String userId;
@@ -77,5 +82,7 @@ public class User {
     private String language;
 
     private String mobileNo;
+
+
 
 }

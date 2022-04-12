@@ -1,0 +1,25 @@
+#Disable spring data jpa and security auto configuration to start the app.
+#will add them later once start working on them
+spring:
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+#      - org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration
+  security:
+    user:
+      name: user
+      password: password
+
+
+logging:
+  level:
+    org:
+      springframework:
+        security: INFO
+
+name: test-YAML
+environment: testing
+enabled: false
+server:
+  port: 8082
+

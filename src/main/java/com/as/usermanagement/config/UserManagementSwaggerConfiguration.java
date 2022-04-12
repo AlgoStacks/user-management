@@ -32,7 +32,7 @@ public class UserManagementSwaggerConfiguration {
 				"api documentation for user management service", 
 				"1.0",
 				"Apis", 
-				new Contact("AlgoStacks", "https://algostacks.com", "algostacks@gmail.com"), 
+				new Contact("AlgoStacks", "https://algostacks.com", "info@algostacks.com"),
 				"Api license",
 				"license url", 
 				Collections.emptyList());
